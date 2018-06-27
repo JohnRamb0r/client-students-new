@@ -145,6 +145,9 @@
 
         },
         methods:{
+          // Kontrolliert, ob die richtigen Antworten von Elementen mit dem Attribut "data-iscorrect" ausgewählt wurden.
+          // true --> KLasse "is-correct" wird gesetzt
+          // false --> Klasse "is-incorrect" wird gesetzt
           checkCorrectAnswers: function(event){
             //console.log($(event.target).parent().siblings());
             $(event.target).parent().siblings().map(function(value, key){
@@ -157,6 +160,8 @@
               }
             });
           },
+          // Kontrolliert, ob die richtige Antwort beim Lüchentext eingegeben wurde.
+          // Je nach eingabe, wird die Klasse "is-success" oder "is-danger" gesetzt.
           checkCorrectAnswersLueckentext: function(event){
 
             $(event.target).parent().siblings(".lueckenText-div").find("input").map(function(value, key){
@@ -177,6 +182,7 @@
 
             });
           },
+          // Startet und zeigt die Lerneinheit nach zB einem Buttonclick
           start_lerneinheit: function(event){
             this.max_units = $(".unit").length;
 
@@ -184,7 +190,10 @@
             $('#forward_back_buttons').removeClass("is-hidden");
             $('#start_element').addClass("is-hidden");
           },
-          back_lerneinheit: function(event){
+          // Erniedrigt den Seitencounter "counter" um eines.
+          // Setzt die aktuelle Page auf "is-hidden" und entfernt die "is-hidden" Klasse von der vorherigen Page, um diese anzuzeigen. Ebenfalls wird davor der counter um 1 erniedrigt
+          // counter > 0
+         back_lerneinheit: function(event){
             if(this.counter > 1){
               $('[data-position="'+this.counter+'"]').addClass("is-hidden");
 
@@ -193,6 +202,9 @@
               $('[data-position="'+this.counter+'"]').removeClass("is-hidden");
             }
           },
+          // Erhöht den Seitencounter "counter" um eines.
+          // Setzt die aktuelle Page auf "is-hidden" und entfernt die "is-hidden" Klasse von der nächsten Page, um diese anzuzeigen. Ebenfalls wird davor der counter um 1 erhöht
+          // counter < Anzahl der Pages.
           forward_lerneinheit: function(event){
             if(this.counter <  this.max_units){
               $('[data-position="'+this.counter+'"]').addClass("is-hidden");
